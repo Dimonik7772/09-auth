@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 import { nextServer } from "./api";
-import { User } from "./clientApi";
+import { User } from "@/types/user";
 import { Note } from "@/types/note";
 
 export const checkSession = async () => {
@@ -31,6 +31,7 @@ export const fetchNoteById = async (id: string) => {
          Cookie: cookieStore.toString(),
       },
    });
+
    return res.data;
 };
 export const fetchNotes = async (

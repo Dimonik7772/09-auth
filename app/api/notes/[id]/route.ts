@@ -9,10 +9,14 @@ type Props = {
 };
 
 export async function GET(request: NextRequest, { params }: Props) {
-  const { id } = await params;
   try {
-    const { data } = await api(`/notes/${id}`, {});
-
+    const cookieStore = await cookies();
+    const { id } = await params;
+    const { data } = await api.get(`/notes/${id}`, {
+      headers: {
+        Cookie: cookieStore.toString(),
+      },
+    });
     return NextResponse.json(data);
   } catch (error) {
     return NextResponse.json(

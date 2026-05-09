@@ -85,5 +85,6 @@ export const deleteNote = async (id: string) => {
 
 export const fetchNoteById = async (id: string) => {
    const response = await nextServer.get<Note>(`/notes/${id}`);
+
    return response.data;
 };
