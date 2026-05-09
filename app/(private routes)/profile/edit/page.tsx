@@ -1,0 +1,80 @@
+'use client';
+
+import { useEffect, useState } from 'react';
+
+import { getMe, updateMe } from '@/lib/api/clientApi';
+import css from './EditProfile.module.css';
+import Image from 'next/dist/shared/lib/image-external';
+import { useRouter } from 'next/navigation';
+
+const EditProfile = () => {
+  const [username, setUsername] = useState('');
+  const [user, setUser] = useState('');
+  const [avatar, setAvatar] = useState('');
+  const router = useRouter();
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setUsername(event.target.value);
+  };
+  useEffect(() => {
+    getMe().then(user => {
+      setUser(user.email);
+      setUsername(user.username ?? '');
+      setAvatar(user.avatar ?? '');
+    });
+  }, []);
+  const handleSaveUser = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    try {
+      await updateMe({ username });
+      router.push('/profile');
+    } catch (error) {
+      console.error('Oops, some error:', error);
+    }
+  };
+
+  return (
+    <main className={css.mainContent}>
+      <div className={css.profileCard}>
+        <h1 className={css.formTitle}>Edit Profile</h1>
+
+        <Image
+          src={avatar || '/default-avatar.png'}
+          alt="User Avatar"
+          width={120}
+          height={120}
+          className={css.avatar}
+        />
+
+        <form className={css.profileInfo} onSubmit={handleSaveUser}>
+          <div className={css.usernameWrapper}>
+            <label htmlFor="username">Username:</label>
+            <input
+              id="username"
+              type="text"
+              className={css.input}
+              value={username}
+              onChange={handleChange}
+            />
+          </div>
+
+          <p>Email: {user}</p>
+
+          <div className={css.actions}>
+            <button type="submit" className={css.saveButton}>
+              Save
+            </button>
+            <button
+              type="button"
+              className={css.cancelButton}
+              onClick={() => router.push('/profile')}
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </main>
+  );
+};
+
+export default EditProfile;

@@ -4,7 +4,7 @@ import './globals.css';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import TanStackProvider from '@/components/TanStackProvider/TanStackProvider';
-
+import AuthProvider from '@/components/AuthProvider/AuthProvider';
 const robotoSans = Roboto({
   variable: '--font-roboto',
   subsets: ['latin'],
@@ -49,10 +49,15 @@ export default function RootLayout({
     <html lang="en" className={robotoSans.variable}>
       <body>
         <TanStackProvider>
-          <Header />
-          {children}
-          {modal}
-          <Footer />
+          <AuthProvider>
+            <Header />
+            {children}
+            {modal}
+            <p>
+              Created <time dateTime="2025">2025</time>
+            </p>
+            <Footer />
+          </AuthProvider>
         </TanStackProvider>
       </body>
     </html>

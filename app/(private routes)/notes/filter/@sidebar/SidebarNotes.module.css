@@ -2,7 +2,6 @@
   list-style-type: none;
   margin: 0;
   padding: 0;
-  display: flex;
 }
 
 .menuItem {
@@ -21,4 +20,23 @@
 .menuLink:hover {
   background-color: #444;
   color: #ddd;
+}
+.container {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #2c2c2c;
+  color: white;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #ddd;
+}
+
+.notesWrapper {
+  width: 100%;
 }
