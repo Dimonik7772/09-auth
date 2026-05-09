@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import css from './not-Found.module.css';
+import css from './NotFound.module.css';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
