@@ -9,9 +9,9 @@ import { useRouter } from 'next/navigation';
 import { useAuthStore } from '@/lib/store/authStore';
 
 const EditProfile = () => {
-  const [username, setUsername] = useState('');
-  const [user, setUser] = useState('');
-  const [avatar, setAvatar] = useState('');
+  const [username, setUsername] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [avatar, setAvatar] = useState<string>('');
   const { setUser: setAuthUser } = useAuthStore();
   const router = useRouter();
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -19,7 +19,7 @@ const EditProfile = () => {
   };
   useEffect(() => {
     getMe().then(user => {
-      setUser(user.email);
+      setEmail(user.email);
       setUsername(user.username ?? '');
       setAvatar(user.avatar ?? '');
     });
@@ -61,17 +61,13 @@ const EditProfile = () => {
             />
           </div>
 
-          <p>Email: {user}</p>
+          <p>Email: {email}</p>
 
           <div className={css.actions}>
             <button type="submit" className={css.saveButton}>
               Save
             </button>
-            <button
-              type="button"
-              className={css.cancelButton}
-              onClick={() => router.push('/profile')}
-            >
+            <button type="button" className={css.cancelButton} onClick={() => router.back()}>
               Cancel
             </button>
           </div>
