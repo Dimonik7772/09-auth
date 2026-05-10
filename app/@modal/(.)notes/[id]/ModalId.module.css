@@ -58,6 +58,12 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.error {
+  color: #ff4d4f;
+  font-size: 16px;
+  text-align: center;
+  margin-top: 20px;
+}
 .backdrop {
   position: fixed;
   top: 0;

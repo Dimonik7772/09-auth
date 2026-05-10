@@ -111,3 +111,8 @@
   gap: 12px;
   margin-top: 20px;
 }
+.error {
+  color: #dc3545;
+  font-size: 14px;
+  margin-top: 8px;
+}

@@ -20,7 +20,6 @@ const AuthNavigation = () => {
       clearIsAuthenticated();
       router.push("/sign-in");
    };
-   console.log(isAuthenticated);
    return isAuthenticated ? (
       <>
          <li className={css.navigationItem}>
@@ -38,9 +37,11 @@ const AuthNavigation = () => {
                Profile
             </Link>
          </li>
-         <button className={css.logoutButton} onClick={handleLogout}>
-            Logout
-         </button>
+         <li className={css.navigationItem}>
+            <button className={css.logoutButton} onClick={handleLogout}>
+               Logout
+            </button>
+         </li>
       </>
    ) : (
       <>

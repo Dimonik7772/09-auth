@@ -29,7 +29,7 @@ export default function NotePreviewClient({ id }: Props) {
   if (isError) {
     return <Error error={error} />;
   }
-  if (!note) return isError;
+  if (!note) return <p className={css.error}>Note not found</p>;
   return (
     <Modal onClose={close}>
       <button onClick={close} className={css.backBtn}>

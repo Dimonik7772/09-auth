@@ -2,6 +2,7 @@ import { cookies } from "next/headers";
 import { nextServer } from "./api";
 import { User } from "@/types/user";
 import { Note } from "@/types/note";
+import { ApiResponse } from "@/lib/api/clientApi";
 
 export const checkSession = async () => {
    const cookieStore = await cookies();
@@ -38,8 +39,12 @@ export const fetchNotes = async (
    page: number,
    search: string,
    tag: string,
-): Promise<Response> => {
-   const response = await nextServer.get<Response>(`/notes`, {
+): Promise<ApiResponse> => {
+   const cookieStore = await cookies();
+   const response = await nextServer.get<ApiResponse>(`/notes`, {
+      headers: {
+         Cookie: cookieStore.toString(),
+      },
       params: {
          page,
          perPage: 12,

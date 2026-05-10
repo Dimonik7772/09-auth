@@ -6,7 +6,7 @@ import { User } from "@/types/user";
 // api.defaults.headers.common["Authorization"] =
 //    `Bearer ${process.env.NEXT_PUBLIC_NOTEHUB_TOKEN}`;
 
-interface ApiResponse {
+export interface ApiResponse {
    notes: Note[];
    totalPages: number;
 }
